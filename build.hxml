@@ -1,0 +1,6 @@
+-cp src
+-cp test
+-js bin/js/out.js
+-main TestAll
+#-lib thx
+-lib utest

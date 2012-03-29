@@ -1,0 +1,7 @@
+<project name="rdg" url="http://github.com/fponticelli/rdg/" license="BSD">
+    <user name="fponticelli"/>
+    <tag v="cross"/>
+	<tag v="data"/>
+    <description>Random Data Generator</description>
+    <version name="0.1.0">first release</version>
+</project>
