@@ -4,3 +4,5 @@
 -main TestAll
 #-lib thx
 -lib utest
+
+-cmd node bin/js/out.js

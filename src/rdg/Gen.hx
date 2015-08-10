@@ -60,7 +60,7 @@ class Gen {
         case "month":              return new Date(d.getFullYear(), d.getMonth(), 1, 0, 0, 0);
         case "year":               return new Date(d.getFullYear(), 0, 1, 0, 0, 0);
         default:
-          return throw Std.format("invalid periodicity '$periodicity'");
+          return throw 'invalid periodicity "$periodicity"';
       }
     }
   }

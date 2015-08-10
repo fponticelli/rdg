@@ -37,12 +37,12 @@ class GFieldGenerate<T> extends GField<T> {
 class GField<T> {
   var obj : GObject<T>;
   var name : String;
-  var gmap : Hash<Void -> Dynamic>;
+  var gmap : Map<String, Void -> Dynamic>;
   var conditionf : T -> Bool;
   public function new(obj : GObject<T>, name : String, conditionf : T -> Bool) {
     this.obj = obj;
     this.name = name;
-    this.gmap = new Hash();
+    this.gmap = new Map();
     this.conditionf = conditionf;
   }
 
@@ -61,8 +61,7 @@ class GField<T> {
     return obj;
   }
 
-  public function mapValue(field : String, f : Dynamic -> Dynamic)
-  {
+  public function mapValue(field : String, f : Dynamic -> Dynamic) {
     _generate = function(o) if(condition(o)) Reflect.setField(o, name, f(Reflect.field(o, field)));
     return obj;
   }
@@ -72,12 +71,12 @@ class GField<T> {
     return obj;
   }
 
-  function condition(o) return null == conditionf ? true : conditionf(o)
+  function condition(o) return null == conditionf ? true : conditionf(o);
 
-  static function fieldKey(v : Dynamic) return "F:" + v
+  static function fieldKey(v : Dynamic) return "F:" + v;
   public function mapField(field : String, f : Dynamic -> (Void -> Dynamic)) {
     _generate = function(o) {
-      if(!condition(o)) 
+      if(!condition(o))
         return;
       var v = Reflect.field(o, field),
         k = fieldKey(v),
@@ -89,10 +88,10 @@ class GField<T> {
     return obj;
   }
 
-  static function fieldsKey(v : Array<Dynamic>) return "S:" + v.join("|")
+  static function fieldsKey(v : Array<Dynamic>) return "S:" + v.join("|");
   public function mapFields(fields : Array<String>, f : Array<Dynamic> -> (Void -> Dynamic)) {
     _generate = function(o) {
-      if(!condition(o)) 
+      if(!condition(o))
         return;
       var values = [];
       for(field in fields)
