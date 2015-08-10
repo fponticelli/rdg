@@ -16,7 +16,7 @@ class TestGenerators {
     }
   }
 
-  public function testInt( {
+  public function testInt() {
     var ints = new GInt(5, 10, decimalsGenerator(0.2));
 
     Assert.equals(5, ints.generate());
@@ -26,7 +26,7 @@ class TestGenerators {
     Assert.equals(9, ints.generate());
   }
 
-  public function testPicker( {
+  public function testPicker() {
     var pick = new GPicker(["a", "b", "c", "d"], decimalsGenerator(0.25));
 
     Assert.equals("a", pick.generate());
@@ -35,7 +35,7 @@ class TestGenerators {
     Assert.equals("d", pick.generate());
   }
 
-  public function testWeighterPicker( {
+  public function testWeighterPicker() {
     var pick = new GWeighted(
       [
         { value : "a", weight : 1.0 },
