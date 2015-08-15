@@ -1,0 +1,11 @@
+{
+  "name": "rdg",
+  "url": "http://github.com/fponticelli/rdg/",
+  "license": "MIT",
+  "classPath": "src",
+  "tags": ["random", "data", "generator", "cross"],
+  "description": "Random Data Generator.",
+  "releasenote": "Updated to Haxe 3.",
+  "version": "0.2.0",
+  "contributors": ["fponticelli"]
+}
