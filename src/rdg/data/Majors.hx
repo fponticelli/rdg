@@ -205,28 +205,23 @@ class Majors {
 
   static var NO_DEGREE = "none";
   static var map = (function() {
-    var map = new Hash();
-    function getArray(key : String)
-    {
+    var map = new Map();
+    function getArray(key : String) {
       var arr = map.get(key);
-      if(null == arr)
-      {
+      if(null == arr) {
         arr = [];
         map.set(key, arr);
       }
       return arr;
     }
-    var cache = new Hash();
-    function addValue(arr : Array<Dynamic>, unique : String, value : Dynamic)
-    {
-      if(!cache.exists(unique))
-      {
+    var cache = new Map();
+    function addValue(arr : Array<Dynamic>, unique : String, value : Dynamic) {
+      if(!cache.exists(unique)) {
         arr.push(value);
         cache.set(unique, true);
       }
     }
-    for(item in data)
-    {
+    for(item in data) {
       addValue(
         getArray(keySchools()),
         "S:" +item.school,
@@ -237,8 +232,7 @@ class Majors {
         "MD:" + item.school + item.major,
         { major : item.major, degrees : item.degrees }
       );
-      for(degree in item.degrees)
-      {
+      for(degree in item.degrees) {
         addValue(
           getArray(keyDegrees()),
           "D:" +degree,
@@ -269,16 +263,15 @@ class Majors {
     return map;
   })();
 
-  static inline function keySchool(school : String) return "S:" + school
-  static inline function keyDegree(degree : String) return "D:" + degree
-  static inline function keySchoolDegree(school : String, degree : String) return "SD:" + school + ":" + degree
-  static inline function keySchools() return "S"
-  static inline function keyDegrees() return "D"
-  static inline function keySchoolsByDegree(degree : String) return "SbyD:" + degree
-  static inline function keyDegreesBySchool(school : String) return "DbyS:" + school
+  static inline function keySchool(school : String) return "S:" + school;
+  static inline function keyDegree(degree : String) return "D:" + degree;
+  static inline function keySchoolDegree(school : String, degree : String) return "SD:" + school + ":" + degree;
+  static inline function keySchools() return "S";
+  static inline function keyDegrees() return "D";
+  static inline function keySchoolsByDegree(degree : String) return "SbyD:" + degree;
+  static inline function keyDegreesBySchool(school : String) return "DbyS:" + school;
 
-  static function getFromMap(key : String)
-  {
+  static function getFromMap(key : String) {
     var result = map.get(key);
     if(null == result)
       return [];
@@ -287,37 +280,23 @@ class Majors {
   }
 
   public static function majorsBySchool(school : String) : Array<{ major : String, degrees : Array<String> }>
-  {
     return cast getFromMap(keySchool(school));
-  }
 
   public static function majorsByDegree(degree : String) : Array<{ major : String, school : String }>
-  {
     return cast getFromMap(keyDegree(degree));
-  }
 
   public static function majorsBySchoolAndDegree(school : String, degree : String) : Array<String>
-  {
     return cast getFromMap(keySchoolDegree(school, degree));
-  }
 
   public static function schools() : Array<String>
-  {
     return cast getFromMap(keySchools());
-  }
 
   public static function degrees() : Array<String>
-  {
     return cast getFromMap(keyDegrees());
-  }
 
   public static function schoolsByDegree(degree : String) : Array<String>
-  {
     return cast getFromMap(keySchoolsByDegree(degree));
-  }
 
   public static function degreesBySchool(school : String) : Array<String>
-  {
     return cast getFromMap(keyDegreesBySchool(school));
-  }
 }
